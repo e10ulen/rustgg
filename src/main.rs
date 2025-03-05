@@ -1,9 +1,9 @@
 extern crate log;
-use log::warn;
+use log::{info, warn};
 use std::os::unix::process::CommandExt;
 use std::process::Command;
 fn main() {
-    println!("Git Add files.");
+    info!("Git Add files.");
     let err = Command::new("git").arg("add").arg(".").exec();
     warn!("Error: method git add : {}", err);
 
