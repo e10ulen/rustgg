@@ -20,8 +20,8 @@ fn git_commit() {
 }
 fn git_push() {
     println!("Git Push");
-    let err = Command::new("git").arg("push").arg("-u").exec();
-    println!("Error: method git push -u : {}", err)
+    //let err = Command::new("git").arg("push").arg("-u").exec();
+    //println!("Error: method git push -u : {}", err)
 }
 
 //fn test_echo() {
