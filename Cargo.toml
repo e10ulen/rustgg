@@ -1,10 +1,9 @@
 [package]
 name = "rustgg"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
-description = "半自動化Commit"
+description = "半自動化Commit\n現状はaddfileとcommitが動く？pushに関しては未検証"
 
 [dependencies]
 clap = { version = "4.5.31", features = ["derive"] }
 exec = "0.3.1"
-log = "0.4.26"
