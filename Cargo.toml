@@ -1,6 +1,6 @@
 [package]
 name = "rustgg"
-version = "0.1.3"
+version = "0.2.1"
 edition = "2021"
 description = "自動でcommitをする\nUTCから時間を持ってきて[fix]UTCtimeを記述してコミットを行う"
 
