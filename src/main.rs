@@ -1,11 +1,11 @@
 extern crate clap;
 use chrono::Utc;
-use clap::{ Parser, Subcommand};
+use clap::{Parser, Subcommand};
 use std::process::Command;
 use std::string::String;
 #[derive(Parser)]
 struct Cli {
-     #[clap(subcommand)]
+    #[clap(subcommand)]
     command: Commands,
 }
 #[derive(Subcommand)]
