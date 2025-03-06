@@ -1,5 +1,7 @@
+use chrono::Utc;
 use std::os::unix::process::CommandExt;
 use std::process::Command;
+use std::string::String;
 extern crate clap;
 //fn main() {
 //  git add .
@@ -24,10 +26,12 @@ extern crate clap;
 //    println!("Error: method git push -u : {}", err);
 //}
 use clap::{Parser, Subcommand};
-use std::string::String;
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
 struct Clis {
+    //  下記全てを行うコマンド
+    #[clap(help = "default", short, long = "all")]
+    all_command: Option<String>,
     //  git add .するための前準備
     #[clap(help = "ファイルをaddする", short = 'a', long = "add")]
     add_file: Option<String>,
@@ -44,6 +48,7 @@ struct Clis {
 }
 
 // fn main() {
+
 //     let cli = Clis::parse();
 //     prsintln!("args:{}", cli.add_file);
 //     println!("args:{}", cli.commit);
@@ -84,7 +89,33 @@ enum Commands {
 
 fn main() {
     let cli = Clis::parse();
+    let day_time = Utc::now()
+        .format("%Y年%m月%d日 %H時%M分%S秒 %Z")
+        .to_string();
+    let msg = "[fix]".to_owned() + &day_time;
+    //  全てのコマンドを自動実行する
+    if let Some(all) = cli.all_command.as_deref() {
+        println!("allコマンドを実行します {}", all);
+        let com1 = Command::new("git")
+            .arg("add")
+            .arg(".")
+            .output()
+            .expect("filed:add");
+        let com2 = Command::new("git")
+            .arg("commit")
+            .arg("-m")
+            .arg(msg)
+            .output()
+            .expect("feild:commit");
+        let com3 = Command::new("git")
+            .arg("push")
+            .output()
+            .expect("feild:push");
 
+        println!("git add {}", String::from_utf8_lossy(&com1.stdout));
+        println!("git commit {}", String::from_utf8_lossy(&com2.stdout));
+        println!("git push {}", String::from_utf8_lossy(&com3.stdout));
+    }
     // You can check the value provided by positional arguments, or option arguments
     if let Some(name) = cli.add_file.as_deref() {
         println!("Value for name: {name}");
