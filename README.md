@@ -11,8 +11,11 @@ gg のrust版です。
 ``` rustgg ``` でadd~pushまで行う。  
 本当にこれでいいのか？  
 Argsを取って、 ``` rustgg g ``` で自動pushまで行える方がいいのでは？  
-
-
+## 実行方法
+``` rustgg add``` -> ``` git add . ```  
+``` rustgg commit {MESSAGE}``` -> ``` git commit -m "{TEXTMESSAGE}```   
+``` rustgg push``` -> ``` git push -u ```  
+``` rustgg all``` -> ``` git add . && git commit -m "[fix]{UTC}" && git push -u ```
 
 # 目標
 ## commitに関して
